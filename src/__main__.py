@@ -23,7 +23,7 @@ def main():
 
     # Start
     if args.tool:
-        tool = TermpixTool(args.tool)
+        tool = TermpixTool(args)
     else:
         termpix = Termpix()
         # termpix.run()
