@@ -96,6 +96,15 @@ class TermpixTool:
     
     def checkArgs(self, args):
         self.__checkFile(args)
+        if(args.scale):
+            if args.scale[0] > 255 or args.scale[1] > 255:
+                print("Scale is too large recomended scale is <100")
+                exit(250)
+        if args.quantization > 255:
+            print("Color quantization range is between 0-255")
+            exit(249)
+
+    
 
     def __checkFile(self, args):
         # Check img provided
@@ -109,7 +118,6 @@ class TermpixTool:
             print("You cant provide link and file arguments please only choose 1")
             exit(254)
             return
-        
         if args.file:
             filePath = args.file
             if not os.path.isfile(filePath):
