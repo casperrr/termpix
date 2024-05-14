@@ -32,7 +32,7 @@ def main():
     print(args)
 
     # Start
-    if args.tool:
+    if args.command == 'tool':
         tool = TermpixTool(args)
     else:
         termpix = Termpix()

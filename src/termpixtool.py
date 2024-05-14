@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 
 import requests
+import os
 from PIL import Image
 from io import BytesIO
+import validators
 class TermpixTool:
     def __init__(self, args):
-        if args.tool == "":
-            args.help()
-            exit(255)
-            return
+        
+        # Check arguments
+        self.checkArgs(args)
         
         asciiPix = "█"
         self.pixArray = []
@@ -92,3 +93,41 @@ class TermpixTool:
                 result += "\033[0m"  # Reset colors after each pixel
             result += '\n'  # Add a newline at the end of each row
         return result
+    
+    def checkArgs(self, args):
+        self.__checkFile(args)
+
+    def __checkFile(self, args):
+        # Check img provided
+        # No image provided at all
+        if args.file == None and args.link == None:
+            print("No file/link to img provided please use -f or -l.")
+            exit(255)
+            return
+        # Both link and file provided
+        if args.file and args.link:
+            print("You cant provide link and file arguments please only choose 1")
+            exit(254)
+            return
+        
+        if args.file:
+            filePath = args.file
+            if not os.path.isfile(filePath):
+                print(f"Invalid file path: {filePath}")
+                exit(1)
+            if not os.access(filePath, os.R_OK):
+                print(f"File is not accessible: {filePath}")
+                exit(1)
+            _, ext = os.path.splitext(filePath)
+            if ext.lower() not in ['.png', '.jpeg', '.jpg']:
+                print(f"Invalid file type: {filePath}")
+                exit(1)
+        elif args.link:
+            # Check if the link is valid
+            if not validators.url(args.link):
+                print(f"Invalid link 1: {args.link}")
+                exit(1)
+            response = requests.head(args.link)
+            if response.status_code != 200:
+                print(f"Invalid link 2: {args.link}")
+                exit(1)
