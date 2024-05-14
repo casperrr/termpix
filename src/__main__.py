@@ -21,11 +21,12 @@ def main():
     tool_parser.add_argument('-l', '--link', type=str, help="Image link")
     tool_parser.add_argument('-i', '--interpolation', action='store_true', help="Interpolation for scaling (adding -i will enable it)")
     tool_parser.add_argument('-s', '--scale', nargs=2, type=int, default=[70, 100] ,help="Scale (width height)")
-    tool_parser.add_argument('-b', '--big-pixels', action='store_true', help="Render with smaller char or larger char")
+    # tool_parser.add_argument('-b', '--big-pixels', action='store_true', help="Render with smaller char or larger char") # Not implemented yet and i cant really be bothered
     tool_parser.add_argument('-q', '--quantization', type=int, default=255, help="Color quantization (0-255)")
-    tool_parser.add_argument('-r', '--hide-result', action='store_true', help="Hide the output of the image")
+    tool_parser.add_argument('-r', '--hide-result', action='store_false', help="Hide the output of the image")
     tool_parser.add_argument('--save-processed', type=str, help="Path of where to save processed image")
     tool_parser.add_argument('--img-data', action='store_true', help="Print data about the image")
+    # add another one that will try and remove the background from an image by using the 0,0 pixel color 
 
 
     args = opts.parse_args()

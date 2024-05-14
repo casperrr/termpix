@@ -45,11 +45,9 @@ class TermpixTool:
         # Populate array with pixels
         self.getPixels()
 
-
-        # self.testPrint3()
-        self.string = self.testPrint3ToString()
-        print(self.string)
-        # self.testPrint2()
+        self.imgString = self.createImgString()
+        if args.hide_result:
+            print(self.imgString)
 
     def getPixels(self):
         pixels = self.img.load()
@@ -65,15 +63,6 @@ class TermpixTool:
                     pixel = (pixel, pixel, pixel)
                 row.append(pixel)
             self.pixArray.append(row)
-    
-    def testPrint(self):
-        for y in range(0, len(self.pixArray), 2):
-            for x in range(len(self.pixArray[0])):
-                r1, g1, b1 = self.pixArray[y][x]
-                r2, g2, b2 = self.pixArray[y+1][x] if y+1 < len(self.pixArray) else (0, 0, 0)
-                print(f"\033[38;2;{r2};{g2};{b2}m\033[48;2;{r1};{g1};{b1}m▄", end="")
-            print("\033[0m")  # Reset colors
-            # if y > 10: return
 
     def testPrint2(self):
         for row in self.pixArray:
@@ -82,20 +71,7 @@ class TermpixTool:
                 print(f"\033[38;2;{r};{g};{b}m██", end="")
             print()
 
-    def testPrint3(self):
-        alphaThresh = 128
-        for y in range(0, len(self.pixArray), 2):
-            for x in range(len(self.pixArray[0])):
-                r1, g1, b1, a1 = self.pixArray[y][x]
-                r2, g2, b2, a2 = self.pixArray[y+1][x] if y+1 < len(self.pixArray) else (0, 0, 0, 255)
-                if a2 < alphaThresh and a1 < alphaThresh:  # If the pixel is transparent
-                    print(' ', end="")
-                else:
-                    print(f"\033[38;2;{r2};{g2};{b2}m\033[48;2;{r1};{g1};{b1}m▄", end="")
-                print("\033[0m", end="")  # Reset colors after each pixel
-            print()  # Print a newline at the end of each row
-
-    def testPrint3ToString(self):
+    def createImgString(self):
         alphaThresh = 128
         result = ""
         for y in range(0, len(self.pixArray), 2):
@@ -128,7 +104,6 @@ class TermpixTool:
                 exit(1)
 
     
-
     def __checkFile(self, args):
         # Check img provided
         # No image provided at all
