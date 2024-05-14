@@ -19,7 +19,7 @@ class TermpixTool:
         if args.file:
             self.img = Image.open(args.file).convert('RGBA')
         elif args.link:
-            response = requests.get(self.imgPath)
+            response = requests.get(args.link)
             self.img = Image.open(BytesIO(response.content)).convert('RGBA')
         else:
             print("idk how an error occured here but it did so my bad")
@@ -35,8 +35,6 @@ class TermpixTool:
         self.img = self.img.quantize(colors=args.quantization)
 
         self.img = self.img.convert('RGBA')
-        if args.img_data:
-            print(self.img)
         
         # Save the processed image
         if args.save_processed:
@@ -45,9 +43,19 @@ class TermpixTool:
         # Populate array with pixels
         self.getPixels()
 
-        self.imgString = self.createImgString()
+        # Print debug
+        if args.img_data:
+            print(self.pixArray)
+            print(self.img)
+
+        self.imgString = self.createImgString(args.thresh)
         if args.hide_result:
             print(self.imgString)
+
+        # Save file
+        if args.output_location:
+            with open(args.output_location, 'w') as f:
+                f.write(self.imgString)
 
     def getPixels(self):
         pixels = self.img.load()
@@ -71,8 +79,8 @@ class TermpixTool:
                 print(f"\033[38;2;{r};{g};{b}m██", end="")
             print()
 
-    def createImgString(self):
-        alphaThresh = 128
+    def createImgString(self, thresh):
+        alphaThresh = thresh
         result = ""
         for y in range(0, len(self.pixArray), 2):
             for x in range(len(self.pixArray[0])):
@@ -88,6 +96,16 @@ class TermpixTool:
     
     def checkArgs(self, args):
         self.__checkFile(args)
+        # Check output location validity
+        if args.output_location:
+            if not os.path.isdir(os.path.dirname(args.output_location)):
+                print(f"Invalid save location: {args.output_location}")
+                exit(1)
+            if not os.access(os.path.dirname(args.output_location), os.W_OK):
+                print(f"Save location is not accessible: {args.output_location}")
+                exit(1)
+        else:
+            print("Warning: no output location")
         if(args.scale):
             if args.scale[0] > 255 or args.scale[1] > 255:
                 print("Scale is too large recomended scale is <100")
@@ -102,6 +120,8 @@ class TermpixTool:
             if not os.access(os.path.dirname(args.save_processed), os.W_OK):
                 print(f"Save location is not accessible: {args.save_processed}")
                 exit(1)
+        if args.thresh > 256:
+            print("Range must be between 0-256")
 
     
     def __checkFile(self, args):
