@@ -12,30 +12,46 @@ class TermpixTool:
         # Check arguments
         self.checkArgs(args)
         
-        asciiPix = "█"
         self.pixArray = []
-        self.imgPath = args.tool
 
-        response = requests.get(self.imgPath)
-        self.img = Image.open(BytesIO(response.content)).convert('RGBA')
 
-        self.img.thumbnail((70, 100), resample=Image.NEAREST)
-        # self.img.thumbnail((70, 100))
-        self.img = self.img.quantize(colors=30)
+        # Get image
+        if args.file:
+            self.img = Image.open(args.file).convert('RGBA')
+        elif args.link:
+            response = requests.get(self.imgPath)
+            self.img = Image.open(BytesIO(response.content)).convert('RGBA')
+        else:
+            print("idk how an error occured here but it did so my bad")
+            exit(5)
+
+        # Scale image
+        if args.interpolation:
+            self.img.thumbnail((args.scale[0], args.scale[1]), resample=Image.NEAREST)
+        else:
+            self.img.thumbnail((args.scale[0], args.scale[1]))
+
+        # Quantize Colors  
+        self.img = self.img.quantize(colors=args.quantization)
+
         self.img = self.img.convert('RGBA')
-        print(self.img)
-        self.createTPix()
-
+        if args.img_data:
+            print(self.img)
+        
         # Save the processed image
-        self.img.save('processed_image.png', 'PNG')
+        if args.save_processed:
+            self.img.save(args.save_processed, 'PNG')
 
-        # print(self.pixArray)
-        self.testPrint3()
+        # Populate array with pixels
+        self.getPixels()
+
+
+        # self.testPrint3()
         self.string = self.testPrint3ToString()
         print(self.string)
         # self.testPrint2()
 
-    def createTPix(self):
+    def getPixels(self):
         pixels = self.img.load()
         imgWidth, imgHeight = self.img.size
         xStep = 1
@@ -103,6 +119,13 @@ class TermpixTool:
         if args.quantization > 255:
             print("Color quantization range is between 0-255")
             exit(249)
+        if args.save_processed:
+            if not os.path.isdir(os.path.dirname(args.save_processed)):
+                print(f"Invalid save location: {args.save_processed}")
+                exit(1)
+            if not os.access(os.path.dirname(args.save_processed), os.W_OK):
+                print(f"Save location is not accessible: {args.save_processed}")
+                exit(1)
 
     
 

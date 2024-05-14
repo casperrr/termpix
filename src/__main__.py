@@ -20,9 +20,12 @@ def main():
     tool_parser.add_argument('-f', '--file', type=str, help="File path")
     tool_parser.add_argument('-l', '--link', type=str, help="Image link")
     tool_parser.add_argument('-i', '--interpolation', action='store_true', help="Interpolation for scaling (adding -i will enable it)")
-    tool_parser.add_argument('-s', '--scale', nargs=2, type=int, help="Scale (width height)")
+    tool_parser.add_argument('-s', '--scale', nargs=2, type=int, default=[70, 100] ,help="Scale (width height)")
     tool_parser.add_argument('-b', '--big-pixels', action='store_true', help="Render with smaller char or larger char")
-    tool_parser.add_argument('-q', '--quantization', type=int, help="Color quantization (0-255)")
+    tool_parser.add_argument('-q', '--quantization', type=int, default=255, help="Color quantization (0-255)")
+    tool_parser.add_argument('-r', '--hide-result', action='store_true', help="Hide the output of the image")
+    tool_parser.add_argument('--save-processed', type=str, help="Path of where to save processed image")
+    tool_parser.add_argument('--img-data', action='store_true', help="Print data about the image")
 
 
     args = opts.parse_args()
