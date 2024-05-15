@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from termpix import *
-from termpixtool import *
+
+from src.termpix.termpix import Termpix
+from . import *
+from src.termpixtool.termpixtool import *
 from argparse import ArgumentParser
 
 def main():
