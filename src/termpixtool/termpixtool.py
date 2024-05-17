@@ -86,7 +86,7 @@ class TermpixTool:
             for x in range(len(self.pixArray[0])):
                 r1, g1, b1, a1 = self.pixArray[y][x]
                 r2, g2, b2, a2 = self.pixArray[y+1][x] if y+1 < len(self.pixArray) else (0, 0, 0, 255)
-                if a2 < alphaThresh and a1 < alphaThresh:  # If the pixel is transparent
+                if a2 < alphaThresh or a1 < alphaThresh:  # If the pixel is transparent
                     result += ' '
                 else:
                     result += f"\033[38;2;{r2};{g2};{b2}m\033[48;2;{r1};{g1};{b1}m▄"
