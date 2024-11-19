@@ -22,7 +22,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'termpix = src.termpix.__main__:main',
+            'termpix = termpix.__main__:main',
         ],
     }
 )

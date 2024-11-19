@@ -1,6 +1,6 @@
 # Maintainer: casperrr
 pkgname=termpix
-pkgver=r22.5805378
+pkgver=r23.67fca5e
 pkgrel=1
 pkgdesc="This is a test"
 arch=('any')
