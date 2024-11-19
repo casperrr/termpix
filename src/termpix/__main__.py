@@ -3,9 +3,9 @@
 
 import sys
 
-from src.termpix.termpix import Termpix
+from termpix.termpix import Termpix
 from . import *
-from src.termpixtool.termpixtool import *
+from termpixtool.termpixtool import *
 from argparse import ArgumentParser
 
 def main():

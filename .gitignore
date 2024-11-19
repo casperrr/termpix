@@ -162,3 +162,7 @@ termpixVenv/
 .vscode/
 *.png
 *.jpg
+/pkg/
+/build/
+/*.pkg.tar.zst
+*.egg-info/
