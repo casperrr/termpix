@@ -1,7 +1,7 @@
 # import glob
 from setuptools import setup, find_packages
 
-with open("./README.md", "r") as f:
+with open("../README.md", "r") as f:
     long_description = f.read()
 
 # tpix_files = glob.glob('tpix/*')
