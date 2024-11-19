@@ -1,7 +1,10 @@
+import glob
 from setuptools import setup, find_packages
 
 with open("./README.md", "r") as f:
     long_description = f.read()
+
+tpix_files = glob.glob('tpix/*')
 
 setup(
     name='termpix',
@@ -22,4 +25,5 @@ setup(
             'termpix = src.termpix.__main__:main',
         ],
     },
+    data_files=[()]
 )
