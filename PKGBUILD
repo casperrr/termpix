@@ -1,6 +1,6 @@
 # Maintainer: casperrr
 pkgname=termpix
-pkgver=r23.67fca5e
+pkgver=r24.51d4895
 pkgrel=1
 pkgdesc="This is a test"
 arch=('any')
@@ -28,4 +28,12 @@ package() {
     cd "$srcdir"
     pip install --prefix=/usr --root "$pkgdir" .
     # python setup.py install
+}
+
+post_install() {
+    # Create .config dir
+    mkdir -p "$HOME/.config/termpix"
+    # Copy tpix files
+    cp "$srcdir/../tpix" "$HOME/.config/termpix/"
+    echo "THIS IS A TEST PLEASE WORK PLEASE WORK"
 }
