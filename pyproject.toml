@@ -36,7 +36,7 @@ packages = ["src/termpix"]
 
 [tool.semantic_release]
 version_toml = ["pyproject.toml:project.version"]
-build_command = "python -m build"
+build_command = "python -m build --wheel --no-isolation"
 dist_path = "dist/"
 upload_to_pypi = false
 upload_to_release = true

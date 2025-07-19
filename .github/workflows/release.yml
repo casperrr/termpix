@@ -49,7 +49,9 @@ jobs:
         python-version: '3.9'
 
     - name: Install python-semantic-release
-      run: pip install python-semantic-release
+      run: |
+        pip install python-semantic-release
+        pip install build hatchling
 
     - name: Configure git
       run: |
