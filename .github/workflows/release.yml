@@ -75,7 +75,8 @@ jobs:
 
     - name: Update local PKGBUILD
       run: |
-        sed -i "s/pkgver=.*/pkgver=${{ steps.version.outputs.new_version }}/" PKGBUILD
+        # Update version in PKGBUILD more carefully
+        sed -i "s/^pkgver=.*/pkgver=${{ steps.version.outputs.new_version }}/" PKGBUILD
         git add PKGBUILD
         git commit -m "chore: update PKGBUILD to version ${{ steps.version.outputs.new_version }}" || echo "No PKGBUILD changes to commit"
         git push
