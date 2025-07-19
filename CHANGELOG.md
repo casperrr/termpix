@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.4 (2025-07-19)
+
+### Bug Fixes
+
+- Added versioning to PKGBUILD files on repo and on AUR
+  ([`02988dc`](https://github.com/casperrr/termpix/commit/02988dc0f762230a1e4d73f77933656bad03417f))
+
+
 ## v1.0.3 (2025-07-19)
 
 ### Bug Fixes
