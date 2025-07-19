@@ -68,7 +68,8 @@ jobs:
     - name: Get new version
       id: version
       run: |
-        NEW_VERSION=$(python -c "import sys; sys.path.append('src'); from termpix import __version__; print(__version__)")
+        # Extract version directly from __init__.py without importing
+        NEW_VERSION=$(grep -E "^__version__ = " src/termpix/__init__.py | cut -d '"' -f 2)
         echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
         echo "New version: $NEW_VERSION"
 
