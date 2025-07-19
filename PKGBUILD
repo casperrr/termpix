@@ -1,6 +1,6 @@
 # Maintainer: casperrr
 pkgname=termpix
-pkgver=1.0.2
+pkgver=1.0.5
 pkgrel=1
 pkgdesc="Convert and display images as pixel art in an ANSI terminal"
 arch=('any')
