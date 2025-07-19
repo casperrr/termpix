@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v1.1.0 (2025-07-19)
+
+### Chores
+
+- Update PKGBUILD to version 1.0.6
+  ([`a35f2bc`](https://github.com/casperrr/termpix/commit/a35f2bce874939f89bd58e5c32c66ccabe41477c))
+
+### Features
+
+- READEM created
+  ([`1d9b573`](https://github.com/casperrr/termpix/commit/1d9b573d7639b19dd85bb31b8cc7c0312f78e154))
+
+
 ## v1.0.6 (2025-07-19)
 
 ### Bug Fixes
