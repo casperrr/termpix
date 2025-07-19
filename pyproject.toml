@@ -16,7 +16,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-license = "GNU"
+license = "MIT"
 license-files = ["LICENSE"]
 dependencies = [
     "pillow >= 9.0.0",
