@@ -1,5 +1,5 @@
 # Maintainer: casperrr
-pkgname=termpix
+pkgname=pytermpix
 pkgver=1.0.5
 pkgrel=1
 pkgdesc="Convert and display images as pixel art in an ANSI terminal"

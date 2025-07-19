@@ -83,7 +83,7 @@ jobs:
     - name: Deploy to AUR
       uses: KSXGitHub/github-actions-deploy-aur@v2.7.2
       with:
-        pkgname: termpix
+        pkgname: pytermpix
         pkgbuild: ./PKGBUILD
         commit_username: github-actions[bot]
         commit_email: github-actions[bot]@users.noreply.github.com
