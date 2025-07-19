@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v1.0.6 (2025-07-19)
+
+### Bug Fixes
+
+- FUCKKKKKKKKKKKKKKKKKKKKKKKK MEEEEEEEEEEE MANNNNNNNNNNNNNN
+  ([`ed550a0`](https://github.com/casperrr/termpix/commit/ed550a0f5b120582ffc6085b5faa5003377ef4d6))
+
+### Chores
+
+- Update PKGBUILD to version 1.0.5
+  ([`a032e3a`](https://github.com/casperrr/termpix/commit/a032e3acdcac31f9573b88bb337f72ceef6f8aa7))
+
+
 ## v1.0.5 (2025-07-19)
 
 ### Bug Fixes
