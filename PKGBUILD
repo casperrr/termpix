@@ -1,8 +1,8 @@
 # Maintainer: casperrr
 pkgname=termpix
-pkgver=0.0.1
+pkgver=1.0.2
 pkgrel=1
-pkgdesc="Convert and display images as pixel art in the terminal"
+pkgdesc="Convert and display images as pixel art in an ANSI terminal"
 arch=('any')
 url="https://github.com/casperrr/termpix"
 license=('MIT')
