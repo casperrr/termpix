@@ -4,7 +4,7 @@ build-backend = 'hatchling.build'
 
 [project]
 name = 'termpix'
-version = '0.0.1'
+dynamic = ["version"]
 authors = [
     { name = 'casperrr', email = 'casper.sebastien@gmail.com' },
 ]
@@ -16,7 +16,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-license = "GNU"
+license = "MIT"
 license-files = ["LICENSE"]
 dependencies = [
     "pillow >= 9.0.0",
@@ -30,18 +30,22 @@ termpix = 'termpix.__main__:main'
 [tool.hatch.build.targets.wheel]
 packages = ["src/termpix"]
 
+[tool.hatch.version]
+path = "src/termpix/__init__.py"
+
 # This installs tpix folder to /usr/share/termpix/tpix
 [tool.hatch.build.targets.wheel.shared-data]
 "tpix" = "share/termpix/tpix"
 
 [tool.semantic_release]
-version_toml = ["pyproject.toml:project.version"]
-build_command = "python -m build"
+version_variables = ["src/termpix/__init__.py:__version__"]
+build_command = "python -m build --wheel --no-isolation"
 dist_path = "dist/"
 upload_to_pypi = false
 upload_to_release = true
 hvcs = "github"
 commit_message = "chore(release): {version}"
+major_on_zero = false
 
 [tool.semantic_release.branches.main]
 match = "main"

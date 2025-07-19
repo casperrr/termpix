@@ -20,7 +20,7 @@ class Termpix():
         self.testRun()
 
     def testRun(self):
-        path = "./tpix/"
+        path = "/usr/share/termpix/tpix/"
         files = os.listdir(path)
         files = [f for f in files if os.path.isfile(os.path.join(path, f))]
         if files:
