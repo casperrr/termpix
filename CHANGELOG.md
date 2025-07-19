@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.5 (2025-07-19)
+
+### Bug Fixes
+
+- Modified the workflow to fix version receiving bug
+  ([`972e108`](https://github.com/casperrr/termpix/commit/972e10896179acb0f311e685111e31e79721b770))
+
+
 ## v1.0.4 (2025-07-19)
 
 ### Bug Fixes
