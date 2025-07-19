@@ -42,7 +42,6 @@ upload_to_pypi = false
 upload_to_release = true
 hvcs = "github"
 commit_message = "chore(release): {version}"
-major_on_zero = false
 
 [tool.semantic_release.branches.main]
 match = "main"
