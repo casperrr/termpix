@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.3 (2025-07-19)
+
+### Bug Fixes
+
+- God do i really want to commit this junk
+  ([`1e0c4c5`](https://github.com/casperrr/termpix/commit/1e0c4c5eb9ec50c689f31960af1b8abf07e27155))
+
+
 ## v1.0.2 (2025-07-19)
 
 ### Bug Fixes
