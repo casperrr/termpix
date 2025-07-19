@@ -64,3 +64,28 @@ jobs:
       run: |
         semantic-release version
         semantic-release publish
+
+    - name: Get new version
+      id: version
+      run: |
+        NEW_VERSION=$(python -c "import sys; sys.path.append('src'); from termpix import __version__; print(__version__)")
+        echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+        echo "New version: $NEW_VERSION"
+
+    - name: Update local PKGBUILD
+      run: |
+        sed -i "s/pkgver=.*/pkgver=${{ steps.version.outputs.new_version }}/" PKGBUILD
+        git add PKGBUILD
+        git commit -m "chore: update PKGBUILD to version ${{ steps.version.outputs.new_version }}" || echo "No PKGBUILD changes to commit"
+        git push
+
+    - name: Deploy to AUR
+      uses: KSXGitHub/github-actions-deploy-aur@v2.7.2
+      with:
+        pkgname: termpix
+        pkgbuild: ./PKGBUILD
+        commit_username: github-actions[bot]
+        commit_email: github-actions[bot]@users.noreply.github.com
+        ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+        commit_message: "Update to version ${{ steps.version.outputs.new_version }}"
+        ssh_keyscan: true
