@@ -165,4 +165,5 @@ termpixVenv/
 pkg/
 /build/
 *.pkg.tar.zst
+*.tar.zst
 *.egg-info/
