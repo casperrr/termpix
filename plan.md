@@ -1,0 +1,5 @@
+- Call the program with `termpix` and give flags like `-l`
+- Allow for the user to organise their images in folders and have an easy way to catagorise them
+- Store them inside of `.config` when you even ever get to that point.
+- Use a hashtable for the colors of of the pictures.
+- Have it find a tpix based on color scheme
