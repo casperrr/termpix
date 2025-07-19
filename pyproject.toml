@@ -4,7 +4,7 @@ build-backend = 'hatchling.build'
 
 [project]
 name = 'termpix'
-version = "1.0.0"
+version = "0.0.1"
 authors = [
     { name = 'casperrr', email = 'casper.sebastien@gmail.com' },
 ]
@@ -42,6 +42,7 @@ upload_to_pypi = false
 upload_to_release = true
 hvcs = "github"
 commit_message = "chore(release): {version}"
+major_on_zero = false
 
 [tool.semantic_release.branches.main]
 match = "main"
