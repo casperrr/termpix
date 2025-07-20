@@ -8,13 +8,15 @@ from argparse import ArgumentParser
 
 def main():
     opts = ArgumentParser(prog= 'termpix',
-                            description= 'Display Ascii art in your terminal',
-                            usage= 'termpix [options] \n       ' \
-                                   'termpix tool [tool-options]')
+                          description= 'Display Ascii art in your terminal',
+                          usage= 'termpix [options] \n       ' \
+                                  'termpix tool [tool-options]')
 
-    opts.add_argument('-m', action="store_true", help="IDK WAHTS GOING ON")
-
-    
+    opts.add_argument('-l', '--list', action='store_true', help='List available termpix file names')
+    opts.add_argument('-L', '--list-imgs', action='store_true', help='List available termpix images')
+    opts.add_argument('-s', '--select', type=str, help='Select a specific termpix file to display')
+    opts.add_argument('-d', '--directory', type=str, help='Select a custom directory to search for termpix files')
+    opts.add_argument('-f', '--file', type=str, help='Select a specific termpix file path to display')
 
     tool_args = opts.add_subparsers(dest='command')
     tool_parser = tool_args.add_parser('tool', help="Used to use the tpix creation tool")
@@ -31,18 +33,15 @@ def main():
     tool_parser.add_argument('--img-data', action='store_true', help="Print data about the image")
     # add another one that will try and remove the background from an image by using the 0,0 pixel color 
 
-
     args = opts.parse_args()
 
-
-
-    print(args)
+    # print(args) # debug
 
     # Start
     if args.command == 'tool':
         tool = TermpixTool(args)
     else:
-        termpix = Termpix()
+        termpix = Termpix(args)
         # termpix.run()
 
 
