@@ -43,10 +43,9 @@ class Termpix():
                 print(f'TPix file {args.select} not found.')
                 exit(1)
 
+        # Random
         self.display_tpix(random.choice(self.files))
 
-
-        # self.testRun()
 
     def _validate_args(self, args):
         if args.directory:
@@ -60,16 +59,3 @@ class Termpix():
     def display_tpix(self, file):
         with open(os.path.join(self.tpix_path, file), 'r') as f:
             print(f.read())
-
-    def testRun(self):
-        path = self.tpix_path
-        files = os.listdir(path)
-        files = [f for f in files if os.path.isfile(os.path.join(path, f)) and f.endswith('.tpix')]
-        if files:
-            random_file = random.choice(files)
-            print(f"Random file: {random_file}")
-            with open(os.path.join(path, random_file), 'r') as f:
-                file_contents = f.read()
-            print(file_contents)
-        else:
-            print("No files found in the directory.")
