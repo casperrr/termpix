@@ -91,3 +91,4 @@ jobs:
         ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
         commit_message: "Update to version ${{ steps.version.outputs.new_version }}"
         ssh_keyscan: true
+        updpkgsums: true
