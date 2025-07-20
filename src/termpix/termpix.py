@@ -1,39 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
 import os
 import random
 from pathlib import Path
 import sys
+import sysconfig
 
 class Termpix():
 
     def __init__(self):
-        '''
-        Constructor
-        '''
-        # The user's home directory
-        self.HOME = os.environ['HOME'] if 'HOME' in os.environ else ''
-        if len(self.HOME) == 0:
-            os.environ['HOME'] = self.HOME = os.path.expanduser('~')
-
-        print(self.HOME)
-
-        self.tpix_path = self._find_tpix_path()
+        self.tpix_path = Path(sysconfig.get_path('data')) / "share/termpix/tpix"
         self.testRun()
-
-    def _find_tpix_path(self):
-        search_paths = [
-            Path(sys.prefix) / "share/termpix/tpix",
-            Path(__file__).parent.parent.parent / "tpix",
-            Path("/usr/share/termpix/tpix"),
-            Path.home() / ".local/share/termpix/tpix",
-        ]
-        for path in search_paths:
-            if path.exists():
-                return path
-        raise FileNotFoundError(f"tpix directory not found. Searched: {[str(p) for p in search_paths]}")
 
     def testRun(self):
         # path = "/share/termpix/tpix/"
