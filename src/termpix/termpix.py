@@ -4,6 +4,8 @@
 
 import os
 import random
+from pathlib import Path
+import sys
 
 class Termpix():
 
@@ -17,10 +19,25 @@ class Termpix():
             os.environ['HOME'] = self.HOME = os.path.expanduser('~')
 
         print(self.HOME)
+
+        self.tpix_path = self._find_tpix_path()
         self.testRun()
 
+    def _find_tpix_path(self):
+        search_paths = [
+            Path(sys.prefix) / "share/termpix/tpix",
+            Path(__file__).parent.parent.parent / "tpix",
+            Path("/usr/share/termpix/tpix"),
+            Path.home() / ".local/share/termpix/tpix",
+        ]
+        for path in search_paths:
+            if path.exists():
+                return path
+        raise FileNotFoundError(f"tpix directory not found. Searched: {[str(p) for p in search_paths]}")
+
     def testRun(self):
-        path = "/usr/share/termpix/tpix/"
+        # path = "/share/termpix/tpix/"
+        path = self.tpix_path
         files = os.listdir(path)
         files = [f for f in files if os.path.isfile(os.path.join(path, f))]
         if files:

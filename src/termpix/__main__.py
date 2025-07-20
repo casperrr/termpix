@@ -9,8 +9,9 @@ from argparse import ArgumentParser
 def main():
     opts = ArgumentParser(prog= 'termpix',
                             description= 'Display Ascii art in your terminal',
-                            usage= 'This is a test')
-    
+                            usage= 'termpix [options] \n       ' \
+                                   'termpix tool [tool-options]')
+
     opts.add_argument('-m', action="store_true", help="IDK WAHTS GOING ON")
 
     
