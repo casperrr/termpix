@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v1.1.1 (2025-08-13)
+
+### Bug Fixes
+
+- Upaded README
+  ([`dac25b2`](https://github.com/casperrr/termpix/commit/dac25b293611d9da010ed19f2239856e4a2472e4))
+
+### Chores
+
+- Update PKGBUILD to version 1.1.0
+  ([`13ca171`](https://github.com/casperrr/termpix/commit/13ca171d0a12211f940863901f2b13fdcd079a9a))
+
+
 ## v1.1.0 (2025-07-19)
 
 ### Chores
