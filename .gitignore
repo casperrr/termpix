@@ -168,3 +168,4 @@ pkg/
 *.tar.zst
 *.tar.gz
 *.egg-info/
+*.jpg
