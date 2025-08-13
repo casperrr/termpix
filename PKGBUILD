@@ -9,7 +9,7 @@ license=('MIT')
 depends=('python' 'python-pillow' 'python-requests' 'python-validators')
 makedepends=('python-build' 'python-installer' 'python-wheel' 'python-hatchling')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/casperrr/termpix/archive/v$pkgver.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('8530f72197b7ced0d01fedd5b7b10a595b420a75a45ad87d5c72f17f26aa1d2a')
 
 build() {
     cd "termpix-$pkgver"

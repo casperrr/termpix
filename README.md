@@ -1,26 +1,17 @@
-# 🎨 termpix
+# termpix
 
-A powerful terminal tool that displays pixelated ASCII art in your terminal, inspired by `ponysay` and `cowsay`. Convert any image into beautiful terminal art with customizable scaling, colors, and effects!
+A terminal tool that displays pixelated ASCII art in your terminal, inspired by `ponysay` and `cowsay`.
+Includes a tool for converting images to ASCII art, with basic image processing.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![AUR](https://img.shields.io/badge/AUR-pytermpix-blue.svg)
 
-## ✨ Features
+**AUR Package**: [pytermpix](https://aur.archlinux.org/packages/pytermpix)
 
-- 🖼️ **Convert any image** to terminal ASCII art
-- 🌐 **Support for URLs** - directly load images from the web
-- 🎨 **Color quantization** - adjust color depth (0-255)
-- 📏 **Custom scaling** - resize output to fit your terminal
-- 🔍 **Interpolation** - smooth scaling for better quality
-- 🎭 **Background removal** - transparency threshold control
-- 💾 **Save outputs** - export processed images and .tpix files
-- 📊 **Image analysis** - view detailed image metadata
-- 🎲 **Random art** - includes 25+ pre-made pixel art files
+## Installation
 
-## 🚀 Installation
-
-### From AUR (Arch Linux)
+### From AUR 
 ```bash
 # Using yay
 yay -S pytermpix
@@ -34,12 +25,24 @@ cd pytermpix
 makepkg -si
 ```
 
-### From Source
+### Using pip
 ```bash
 git clone https://github.com/casperrr/termpix.git
 cd termpix
-pip install -e .
+pip install .
+# or
+pipx install .
 ```
+
+## Features
+
+- **Convert any image** to terminal ASCII art
+- **Support for URLs** - directly load images from the web
+- **Custom scaling** - resize output to fit your terminal
+- **Background removal** - transparency threshold control
+- **Random art** - includes 25+ pre-made pixel art files
+
+***
 
 ### Dependencies
 - Python 3.9+
@@ -47,7 +50,7 @@ pip install -e .
 - requests
 - validators
 
-## 📖 Usage
+## Usage
 
 ### Basic Usage
 ```bash
@@ -56,6 +59,21 @@ termpix
 
 # Get help
 termpix --help
+
+# List available termpix file names
+termpix -l
+
+# List and display available termpix images
+termpix -L
+
+# Display a specific termpix image
+termpix -s <termpix-file>
+
+# Display a random termpix image from a custom tpix directory
+termpix -d /path/to/custom/tpix/directory
+
+# Display a specific termpix image using filename/path
+termpix -f <termpix-file>
 ```
 
 ### Image Conversion Tool
@@ -96,24 +114,11 @@ termpix tool -f image.jpg --img-data
 # Perfect for terminal: scaled, quantized, with interpolation
 termpix tool -f photo.jpg -s 60 30 -q 32 -i -t 50
 
-# Create low-fi pixel art
-termpix tool -l "https://picsum.photos/200" -s 40 20 -q 8
-
 # Batch processing with saving
 termpix tool -f input.jpg -o art.tpix --save-processed processed.png -r
 ```
 
-## 🎨 Pre-included Art
-
-termpix comes with 25+ pixel art files including:
-- **Characters**: Adventure Time, Bender, GLaDOS, Yoda, Guy Fawkes
-- **Gaming**: TF2 characters (Medic, Pyro, Sniper, Spy), Big Daddy, Vault Boy
-- **Memes**: Tux penguin, Blob fish, Reddit logo, Pooh bear
-- **And many more!**
-
-Run `termpix` without arguments to see a random piece!
-
-## 🔧 Command Line Options
+## Command Line Options
 
 ### Main Commands
 | Option | Description |
@@ -121,13 +126,18 @@ Run `termpix` without arguments to see a random piece!
 | `tool` | Access the image conversion tool |
 | `-m` | Debug mode |
 | `-h, --help` | Show help message |
+| `-l, --list` | List available termpix file names |
+| `-L, --list-imgs` | List available termpix images |
+| `-s, --select` | Select a specific termpix image | 
+| `-d, --directory` | Display a random termpix image from a custom tpix directory |
+| `-f, --file` | Select a specific termpix file path to display |
 
 ### Tool Options
 | Option | Short | Type | Default | Description |
 |--------|-------|------|---------|-------------|
 | `--file` | `-f` | string | - | Local image file path |
 | `--link` | `-l` | string | - | Image URL |
-| `--output-location` | `-o` | string | - | Output .tpix file location |
+| `--output-location` | `-o` | string | `/usr/share/termpix/tpix` | Output .tpix file location |
 | `--scale` | `-s` | int int | 70 100 | Width and height scaling |
 | `--interpolation` | `-i` | flag | false | Enable smooth scaling |
 | `--thresh` | `-t` | int | 128 | Background transparency (0-255) |
@@ -139,60 +149,23 @@ Run `termpix` without arguments to see a random piece!
 ## 📁 File Formats
 
 ### Supported Input
-- **Images**: JPEG, PNG, GIF, BMP, TIFF, WebP
+- **Images**: JPEG, PNG
 - **URLs**: Direct links to supported image formats
 
 ### Output Formats
 - **Terminal**: Direct ASCII art display
-- **.tpix**: Custom termpix format for storing terminal art
-- **Processed images**: Save modified images in original formats
+- **.tpix**: Fancy name for a text file with ASCII art
 
-## 🔧 Development
-
-### Project Structure
-```
-termpix/
-├── src/termpix/          # Main package
-│   ├── __init__.py       # Package exports
-│   ├── __main__.py       # CLI entry point
-│   ├── termpix.py        # Core display logic
-│   └── termpixtool/      # Image processing tools
-├── tpix/                 # Pre-made pixel art
-├── PKGBUILD             # Arch Linux package
-└── pyproject.toml       # Python package config
-```
-
-### Contributing
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make changes and test
-4. Commit: `git commit -m "feat: add new feature"`
-5. Push: `git push origin feature-name`
-6. Open a Pull Request
-
-### Building
-```bash
-python -m build
-pip install dist/*.whl
-```
-
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Inspired by `ponysay` and `cowsay`
 - Built with Python and PIL/Pillow
 - ASCII art conversion algorithms
 - Community pixel art contributions
 
-## 🐛 Issues & Support
+***
 
-- **Bug Reports**: [GitHub Issues](https://github.com/casperrr/termpix/issues)
-- **Feature Requests**: [GitHub Discussions](https://github.com/casperrr/termpix/discussions)
-- **AUR Package**: [pytermpix](https://aur.archlinux.org/packages/pytermpix)
-
----
-
-Made with ❤️ by [casperrr](https://github.com/casperrr)
