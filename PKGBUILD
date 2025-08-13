@@ -1,6 +1,6 @@
 # Maintainer: casperrr
 pkgname=pytermpix
-pkgver=1.1.0
+pkgver=1.1.1
 pkgrel=1
 pkgdesc="Convert and display images as pixel art in an ANSI terminal"
 arch=('any')
